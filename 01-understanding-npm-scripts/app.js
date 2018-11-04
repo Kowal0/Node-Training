@@ -1,9 +1,15 @@
-const http = require('http');
+const express = require('express');
 
-const routes = require('./routes');
+const app = express();
 
-console.log(routes.someText);
+app.use((req, res, next) => {
+    console.log('lol');
+    next();
+})
 
-const server = http.createServer(routes.handler);
+app.use((req, res, next) => {
+    console.log('lol2');
+    res.send('<h1>Hello World!</h1>');
+})
 
-server.listen(3000);
+app.listen(3000);
